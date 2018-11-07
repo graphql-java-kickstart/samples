@@ -1,0 +1,14 @@
+plugins {
+    id 'war'
+    id 'idea'
+    id 'org.gretty' version '2.2.0'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'com.graphql-java-kickstart:graphql-java-servlet:6.2.0'
+}
