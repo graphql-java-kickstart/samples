@@ -8,24 +8,19 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import graphql.servlet.GraphQLInvocationInputFactory;
-import graphql.servlet.GraphQLObjectMapper;
-import graphql.servlet.GraphQLQueryInvoker;
-import graphql.servlet.SimpleGraphQLHttpServlet;
+import graphql.servlet.GraphQLConfiguration;
+import graphql.servlet.GraphQLHttpServlet;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "HelloServlet", urlPatterns = {"graphql"}, loadOnStartup = 1)
-public class HelloServlet extends SimpleGraphQLHttpServlet {
+public class HelloServlet extends GraphQLHttpServlet {
 
-  public HelloServlet() {
-    super(invocationInputFactory(), queryInvoker(), objectMapper(), null, false);
+  @Override
+  protected GraphQLConfiguration getConfiguration() {
+    return GraphQLConfiguration.with(createSchema()).build();
   }
 
-  private static GraphQLInvocationInputFactory invocationInputFactory() {
-    return GraphQLInvocationInputFactory.newBuilder(createSchema()).build();
-  }
-
-  private static GraphQLSchema createSchema() {
+  private GraphQLSchema createSchema() {
     String schema = "type Query{hello: String}";
 
     SchemaParser schemaParser = new SchemaParser();
@@ -39,11 +34,4 @@ public class HelloServlet extends SimpleGraphQLHttpServlet {
     return schemaGenerator.makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
   }
 
-  private static GraphQLQueryInvoker queryInvoker() {
-    return GraphQLQueryInvoker.newBuilder().build();
-  }
-
-  private static GraphQLObjectMapper objectMapper() {
-    return GraphQLObjectMapper.newBuilder().build();
-  }
 }

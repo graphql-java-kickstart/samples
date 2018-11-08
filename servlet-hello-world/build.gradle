@@ -7,8 +7,9 @@ plugins {
 repositories {
     mavenCentral()
     jcenter()
+    mavenLocal()
 }
 
 dependencies {
-    compile 'com.graphql-java-kickstart:graphql-java-servlet:6.2.0'
+    compile 'com.graphql-java-kickstart:graphql-java-servlet:7.0.0-SNAPSHOT'
 }
