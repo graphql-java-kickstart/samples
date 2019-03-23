@@ -1,0 +1,19 @@
+plugins {
+    id 'idea'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    compile group: 'com.graphql-java-kickstart', name: 'graphql-spring-boot-starter', version: "$LIB_GRAPHQL_SPRING_BOOT_VER"
+}
+
+compileJava {
+    sourceCompatibility = $sourceCompatibility
+    targetCompatibility = $targetCompatibility
+}
