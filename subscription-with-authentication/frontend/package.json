@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-boost": "^0.3.1",
+    "apollo-link-ws": "^1.0.17",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "react": "^16.8.5",
+    "react-apollo": "^2.5.2",
+    "react-dom": "^16.8.5",
+    "react-scripts": "2.1.8",
+    "subscriptions-transport-ws": "^0.9.16",
+    "apollo-link": "latest",
+    "apollo-link-http": "latest",
+    "apollo-utilities": "latest",
+    "apollo-client": "latest",
+    "apollo-cache-inmemory": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

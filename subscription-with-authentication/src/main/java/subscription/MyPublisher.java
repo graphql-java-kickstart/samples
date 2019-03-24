@@ -65,6 +65,7 @@ class MyPublisher implements Publisher<Integer> {
         return;
       }
 
+      log.info("Request {}", n);
       if (n < 0) {
         executor.execute(() -> subscriber.onError(new IllegalArgumentException()));
       } else {

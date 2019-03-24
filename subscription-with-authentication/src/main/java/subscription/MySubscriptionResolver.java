@@ -1,6 +1,11 @@
 package subscription;
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import graphql.schema.DataFetchingEnvironment;
+import graphql.servlet.ApolloSubscriptionConnectionListener;
+import graphql.servlet.GraphQLContext;
+import java.util.Optional;
+import javax.websocket.Session;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +18,13 @@ class MySubscriptionResolver implements GraphQLSubscriptionResolver {
 
   private MyPublisher publisher = new MyPublisher();
 
-  Publisher<Integer> hello() {
-    log.info("Subscribe");
+  Publisher<Integer> hello(DataFetchingEnvironment env) {
+    GraphQLContext context = env.getContext();
+    Optional<String> token = context.getSession()
+        .map(Session::getUserProperties)
+        .map(props -> props.get(ApolloSubscriptionConnectionListener.CONNECT_RESULT_KEY))
+        .map(String.class::cast);
+    log.info("Subscribe to publisher with token: {}", token);
     return publisher;
   }
 
