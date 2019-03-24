@@ -1,5 +1,5 @@
 type Query {
-
+  hello: String
 }
 
 type Subscription {

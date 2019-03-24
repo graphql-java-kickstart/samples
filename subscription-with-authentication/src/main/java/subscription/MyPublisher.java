@@ -9,11 +9,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Flow.Publisher;
-import java.util.concurrent.Flow.Subscriber;
-import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +26,14 @@ class MyPublisher implements Publisher<Integer> {
 
   private final CompletableFuture<Void> terminated = new CompletableFuture<>();
 
+  public void waitUntilTerminated() throws InterruptedException {
+    try {
+      terminated.get();
+    } catch (ExecutionException e) {
+      System.out.println(e);
+    }
+  }
+
   @Override
   public void subscribe(Subscriber<? super Integer> subscriber) {
     MySubscription subscription = new MySubscription(subscriber, executor);
@@ -33,14 +41,6 @@ class MyPublisher implements Publisher<Integer> {
     subscriptions.add(subscription);
 
     subscriber.onSubscribe(subscription);
-  }
-
-  public void waitUntilTerminated() throws InterruptedException {
-    try {
-      terminated.get();
-    } catch (ExecutionException e) {
-      System.out.println(e);
-    }
   }
 
   private class MySubscription implements Subscription {
@@ -91,6 +91,11 @@ class MyPublisher implements Publisher<Integer> {
           int v = value.incrementAndGet();
           log.info("publish item: [{}] ...", v);
           subscriber.onNext(v);
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
         });
       }
     }
