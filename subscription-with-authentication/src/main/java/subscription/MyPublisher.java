@@ -16,6 +16,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 class MyPublisher implements Publisher<Integer> {
 
@@ -65,7 +66,6 @@ class MyPublisher implements Publisher<Integer> {
         return;
       }
 
-      log.info("Request {}", n);
       if (n < 0) {
         executor.execute(() -> subscriber.onError(new IllegalArgumentException()));
       } else {
@@ -87,10 +87,11 @@ class MyPublisher implements Publisher<Integer> {
 
     private void publishItems(long n) {
       for (int i = 0; i < n; i++) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         executor.execute(() -> {
           int v = value.incrementAndGet();
-          log.info("publish item: [{}] ...", v);
+          log.info("publish item: [{}] with principal {}", v, principal);
           subscriber.onNext(v);
           try {
             Thread.sleep(1000);

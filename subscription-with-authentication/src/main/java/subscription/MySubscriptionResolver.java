@@ -9,6 +9,7 @@ import javax.websocket.Session;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +26,7 @@ class MySubscriptionResolver implements GraphQLSubscriptionResolver {
         .map(props -> props.get(ApolloSubscriptionConnectionListener.CONNECT_RESULT_KEY))
         .map(String.class::cast);
     log.info("Subscribe to publisher with token: {}", token);
+    log.info("Security context principal: {}", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     return publisher;
   }
 

@@ -1,0 +1,5 @@
+directive @uppercase on FIELD_DEFINITION
+
+type Query {
+    hello(value: String!): String @uppercase
+}

@@ -1,3 +1,4 @@
 rootProject.name = 'graphql-java-kickstart-samples'
-include 'servlet-hello-world', 
-        'subscription-with-authentication'
+include 'servlet-hello-world',
+        'subscription-with-authentication',
+        'directives'
