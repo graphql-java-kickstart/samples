@@ -17,4 +17,9 @@ public class DirectiveApplication {
     return new SchemaDirective("uppercase", new UppercaseDirective());
   }
 
+  @Bean
+  public SchemaDirective rangeDirective() {
+    return new SchemaDirective("range", new RangeDirective());
+  }
+
 }

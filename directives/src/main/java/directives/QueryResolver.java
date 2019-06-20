@@ -10,4 +10,7 @@ public class QueryResolver implements GraphQLQueryResolver {
     return value;
   }
 
+  public double limitedValue(double value) {
+    return value;
+  }
 }
