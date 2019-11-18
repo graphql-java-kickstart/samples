@@ -1,13 +1,10 @@
 package subscription;
 
-import graphql.servlet.ApolloSubscriptionConnectionListener;
-import graphql.servlet.SubscriptionException;
+import graphql.servlet.core.ApolloSubscriptionConnectionListener;
 import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.actuate.endpoint.SecurityContext;
-import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
