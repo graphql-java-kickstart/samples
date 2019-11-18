@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,8 +17,7 @@ class AuthenticationConnectionListener implements ApolloSubscriptionConnectionLi
     log.debug("onConnect with payload {}", payload.getClass());
     String token = ((Map<String, String>) payload).get("authToken");
     log.info("Token: {}", token);
-    SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(token, null));
-    return Optional.of(token);
+    return Optional.of(new UsernamePasswordAuthenticationToken(token, null));
   }
 
 }
