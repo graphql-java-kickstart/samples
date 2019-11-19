@@ -14,7 +14,6 @@ repositories {
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-webflux"
-    implementation "com.graphql-java-kickstart:graphql-java-kickstart:9.0.0-SNAPSHOT"
-    implementation "com.graphql-java-kickstart:graphql-java-tools-spring-boot-starter:5.12.0-SNAPSHOT"
+    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:6.0.0-SNAPSHOT"
+    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-webflux:6.0.0-SNAPSHOT"
 }
