@@ -1,11 +1,14 @@
 package subscription;
 
-import graphql.servlet.core.ApolloSubscriptionConnectionListener;
+import graphql.kickstart.execution.subscriptions.SubscriptionSession;
+import graphql.kickstart.execution.subscriptions.apollo.ApolloSubscriptionConnectionListener;
+import graphql.kickstart.execution.subscriptions.apollo.OperationMessage;
 import java.util.Map;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,11 +16,13 @@ class AuthenticationConnectionListener implements ApolloSubscriptionConnectionLi
 
   private static final Logger log = LoggerFactory.getLogger(AuthenticationConnectionListener.class);
 
-  public Optional<Object> onConnect(Object payload) {
-    log.debug("onConnect with payload {}", payload.getClass());
-    String token = ((Map<String, String>) payload).get("authToken");
+  public void onConnect(SubscriptionSession session, OperationMessage message) {
+    log.debug("onConnect with payload {}", message.getPayload().getClass());
+    String token = ((Map<String, String>) message.getPayload()).get("authToken");
     log.info("Token: {}", token);
-    return Optional.of(new UsernamePasswordAuthenticationToken(token, null));
+    Authentication authentication = new UsernamePasswordAuthenticationToken(token, null);
+    session.getUserProperties().put("CONNECT_TOKEN", authentication);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
   }
 
 }

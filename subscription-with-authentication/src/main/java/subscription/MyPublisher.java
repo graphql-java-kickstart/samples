@@ -21,11 +21,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 class MyPublisher implements Publisher<Integer> {
 
   private static final Logger log = LoggerFactory.getLogger(MyPublisher.class);
-
-  private ExecutorService executor = Executors.newFixedThreadPool(4);
   private final List<MySubscription> subscriptions = Collections.synchronizedList(new ArrayList<>());
-
   private final CompletableFuture<Void> terminated = new CompletableFuture<>();
+  private ExecutorService executor = Executors.newFixedThreadPool(4);
 
   public void waitUntilTerminated() throws InterruptedException {
     try {
@@ -47,9 +45,8 @@ class MyPublisher implements Publisher<Integer> {
   private class MySubscription implements Subscription {
 
     private final ExecutorService executor;
-
-    private Subscriber<? super Integer> subscriber;
     private final AtomicInteger value;
+    private Subscriber<? super Integer> subscriber;
     private AtomicBoolean isCanceled;
 
     public MySubscription(Subscriber<? super Integer> subscriber, ExecutorService executor) {
@@ -69,7 +66,7 @@ class MyPublisher implements Publisher<Integer> {
       if (n < 0) {
         executor.execute(() -> subscriber.onError(new IllegalArgumentException()));
       } else {
-        publishItems(n);
+        publishNextItem();
       }
     }
 
@@ -85,21 +82,22 @@ class MyPublisher implements Publisher<Integer> {
       }
     }
 
-    private void publishItems(long n) {
-      for (int i = 0; i < n; i++) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private void publishNextItem() {
+      Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        executor.execute(() -> {
-          int v = value.incrementAndGet();
-          log.info("publish item: [{}] with principal {}", v, principal);
-          subscriber.onNext(v);
+      executor.execute(() -> {
+        for (int i = 0; i < 100; i++) {
           try {
             Thread.sleep(1000);
           } catch (InterruptedException e) {
             e.printStackTrace();
           }
-        });
-      }
+
+          int v = value.incrementAndGet();
+          log.info("publish item: [{}] with principal {}", v, principal);
+          subscriber.onNext(v);
+        }
+      });
     }
 
     private void shutdown() {

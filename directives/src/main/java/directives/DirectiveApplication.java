@@ -1,6 +1,6 @@
 package directives;
 
-import com.oembedler.moon.graphql.boot.SchemaDirective;
+import graphql.kickstart.tools.boot.SchemaDirective;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
