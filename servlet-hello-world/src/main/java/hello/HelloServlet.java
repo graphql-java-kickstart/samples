@@ -2,14 +2,14 @@ package hello;
 
 import static graphql.schema.idl.RuntimeWiring.newRuntimeWiring;
 
+import graphql.kickstart.servlet.GraphQLConfiguration;
+import graphql.kickstart.servlet.GraphQLHttpServlet;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.StaticDataFetcher;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import graphql.servlet.GraphQLConfiguration;
-import graphql.servlet.GraphQLHttpServlet;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "HelloServlet", urlPatterns = {"graphql"}, loadOnStartup = 1)

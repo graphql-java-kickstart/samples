@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
+    }
+}
+
+group 'com.graphql-kickstart.samples'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.2-SNAPSHOT"
+    implementation "com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.2-SNAPSHOT"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+
+    compileOnly "org.projectlombok:lombok:1.18.12"
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
+}

@@ -1,11 +1,17 @@
 plugins {
     id "java"
     id "idea"
-    id "org.springframework.boot" version "2.2.1.RELEASE"
+    id "org.springframework.boot" version "2.2.6.RELEASE"
     id 'io.franzbecker.gradle-lombok' version '3.2.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
+    }
+}
 
 repositories {
     mavenCentral()
@@ -14,6 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:6.0.0-SNAPSHOT"
-    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-webflux:6.0.0-SNAPSHOT"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-webflux:$LIB_GRAPHQL_SPRING_BOOT_VER"
 }

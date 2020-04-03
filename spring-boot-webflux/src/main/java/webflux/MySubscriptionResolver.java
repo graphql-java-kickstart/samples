@@ -1,6 +1,6 @@
 package webflux;
 
-import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import graphql.kickstart.tools.GraphQLSubscriptionResolver;
 import graphql.schema.DataFetchingEnvironment;
 import java.time.Duration;
 import org.reactivestreams.Publisher;

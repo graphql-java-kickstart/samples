@@ -1,13 +1,15 @@
 package webflux;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
+import java.util.concurrent.CompletableFuture;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 class HelloQuery implements GraphQLQueryResolver {
 
-  public String hello() {
-    return "Hello world";
+  public CompletableFuture<String> hello() {
+    return Mono.just("Hello world").toFuture();
   }
 
 }

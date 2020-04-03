@@ -1,0 +1,3 @@
+graphql:
+  servlet:
+    exception-handlers-enabled: false
