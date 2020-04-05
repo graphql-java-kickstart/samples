@@ -13,4 +13,10 @@ public class QueryResolver implements GraphQLQueryResolver {
   public double limitedValue(double value) {
     return value;
   }
+
+  public int limitedInt(int value) { return value; }
+
+  public double withInput(InputObject input) {
+    return input.getValue();
+  }
 }

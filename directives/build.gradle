@@ -7,9 +7,9 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 repositories {
+    mavenLocal()
     mavenCentral()
     jcenter()
-    mavenLocal()
 }
 
 compileJava {
@@ -19,6 +19,11 @@ compileJava {
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
-    compile "com.graphql-java-kickstart:graphql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
-    compile "com.graphql-java-kickstart:graphiql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphiql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphql-java-tools:6.0.3-SNAPSHOT"
+//    implementation 'com.graphql-java:graphql-java-extended-validation:0.0.3'
+
+    compileOnly "org.projectlombok:lombok:1.18.12"
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
 }

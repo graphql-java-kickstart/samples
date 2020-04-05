@@ -1,6 +1,7 @@
 package directives;
 
 import graphql.kickstart.tools.boot.SchemaDirective;
+import graphql.schema.idl.SchemaDirectiveWiring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +18,22 @@ public class DirectiveApplication {
     return new SchemaDirective("uppercase", new UppercaseDirective());
   }
 
+//  @Bean
+//  public SchemaDirective rangeDirective() {
+//    return new SchemaDirective("range", new RangeDirective());
+//  }
+
   @Bean
-  public SchemaDirective rangeDirective() {
-    return new SchemaDirective("range", new RangeDirective());
+  public SchemaDirectiveWiring directiveWiring() {
+    return new RangeDirective();
   }
+
+//  @Bean
+//  public SchemaDirectiveWiring validationSchemaDirective() {
+//    ValidationRules validationRules = ValidationRules.newValidationRules()
+//        .onValidationErrorStrategy(OnValidationErrorStrategy.RETURN_NULL)
+//        .build();
+//    return new ValidationSchemaWiring(validationRules);
+//  }
 
 }

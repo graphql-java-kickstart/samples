@@ -1,8 +1,8 @@
 package subscription;
 
-import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import graphql.kickstart.servlet.context.GraphQLWebSocketContext;
+import graphql.kickstart.tools.GraphQLSubscriptionResolver;
 import graphql.schema.DataFetchingEnvironment;
-import graphql.servlet.context.GraphQLWebSocketContext;
 import java.util.Optional;
 import javax.websocket.Session;
 import org.reactivestreams.Publisher;
