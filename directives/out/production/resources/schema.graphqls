@@ -12,5 +12,7 @@ type Query {
 }
 
 input InputObject {
-    value: Float! @range(min: 0.00, max: 10.00)
+    value: Float @range(min: 0.00, max: 10.00)
+    nolimit: Float
+    limit: Float @range(min: 11.00, max: 15.00)
 }
