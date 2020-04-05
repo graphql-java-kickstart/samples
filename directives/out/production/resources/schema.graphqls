@@ -1,0 +1,16 @@
+directive @uppercase on FIELD_DEFINITION
+directive @range(
+    min: Float!,
+    max: Float!
+) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+type Query {
+    hello(value: String!): String @uppercase
+    limitedValue(value: Float! @range(min: 0.00, max: 1.00)): Float
+    limitedInt(value: Int!): Int
+    withInput(input: InputObject): Float
+}
+
+input InputObject {
+    value: Float! @range(min: 0.00, max: 10.00)
+}
