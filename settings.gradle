@@ -4,4 +4,5 @@ include 'servlet-hello-world',
         'directives',
         'spring-boot-webflux'
 include 'custom-error-handler'
+include 'file-upload'
 
