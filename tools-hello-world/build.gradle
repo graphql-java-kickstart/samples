@@ -1,0 +1,17 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'idea'
+    id 'org.gretty' version '2.2.0'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+}
+
+dependencies {
+    compile "com.graphql-java-kickstart:graphql-java-tools:$LIB_GRAPHQL_TOOLS_VER"
+}

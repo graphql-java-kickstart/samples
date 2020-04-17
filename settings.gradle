@@ -2,7 +2,7 @@ rootProject.name = 'graphql-java-kickstart-samples'
 include 'servlet-hello-world',
         'subscription-with-authentication',
         'directives',
-        'spring-boot-webflux'
-include 'custom-error-handler'
-include 'file-upload'
-
+        'spring-boot-webflux',
+        'custom-error-handler',
+        'file-upload',
+        'tools-hello-world'
