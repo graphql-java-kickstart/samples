@@ -1,28 +1,14 @@
-plugins {
-    id 'war'
-    id 'java'
-    id 'idea'
-    id 'org.gretty' version '3.0.3'
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
-    mavenLocal()
-    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
-}
-
 def jettyVersion = '9.4.28.v20200408'
 
 dependencies {
-    compile("com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER")
-    compile "com.graphql-java:graphql-java:14.0"
-    compile "io.projectreactor:reactor-core:3.3.5.RELEASE"
-    compile 'ch.qos.logback:logback-classic:1.0.13'
-    compile "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
-    compile "org.eclipse.jetty:jetty-annotations:${jettyVersion}"
-    compile "org.eclipse.jetty.websocket:websocket-api:${jettyVersion}"
-    compile "org.eclipse.jetty.websocket:websocket-server:${jettyVersion}"
-    compile "org.eclipse.jetty.websocket:javax-websocket-server-impl:${jettyVersion}"
-    compile "org.eclipse.jetty.websocket:websocket-common:${jettyVersion}"
+    implementation "com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER"
+    implementation "com.graphql-java:graphql-java:14.0"
+    implementation "io.projectreactor:reactor-core:3.3.5.RELEASE"
+    implementation 'ch.qos.logback:logback-classic:1.0.13'
+    implementation "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
+    implementation "org.eclipse.jetty:jetty-annotations:${jettyVersion}"
+    implementation "org.eclipse.jetty.websocket:websocket-api:${jettyVersion}"
+    implementation "org.eclipse.jetty.websocket:websocket-server:${jettyVersion}"
+    implementation "org.eclipse.jetty.websocket:javax-websocket-server-impl:${jettyVersion}"
+    implementation "org.eclipse.jetty.websocket:websocket-common:${jettyVersion}"
 }
