@@ -22,4 +22,4 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Gradle Check
-        run: ./gradlew check
+        run: ./gradlew --info check
