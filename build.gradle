@@ -27,6 +27,10 @@ subprojects {
             mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
         }
     }
+
+    test {
+        useJUnitPlatform()
+    }
 }
 
 wrapper {

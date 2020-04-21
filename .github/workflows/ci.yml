@@ -1,0 +1,25 @@
+name: "CI"
+on: [push, pull_request]
+
+jobs:
+  validation:
+    name: "Gradle Wrapper Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+  test:
+    name: "Test run"
+    needs: validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Gradle Check
+        run: ./gradlew check
