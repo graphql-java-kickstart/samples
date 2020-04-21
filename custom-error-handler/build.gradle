@@ -1,3 +1,5 @@
+apply plugin: "org.springframework.boot"
+
 dependencies {
     implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.2-SNAPSHOT"
     implementation "com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.2-SNAPSHOT"
