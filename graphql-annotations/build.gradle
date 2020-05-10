@@ -1,0 +1,19 @@
+apply from: "../spring-boot-commons.gradle"
+
+dependencies {
+    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-graphql-annotations:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    runtimeOnly "com.graphql-java-kickstart:graphiql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    runtimeOnly "com.graphql-java-kickstart:playground-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    runtimeOnly "com.graphql-java-kickstart:voyager-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation "io.reactivex.rxjava2:rxjava"
+    implementation "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+    runtimeOnly("com.h2database:h2")
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "com.graphql-java-kickstart:graphql-spring-boot-starter-test:$LIB_GRAPHQL_SPRING_BOOT_VER"
+}
