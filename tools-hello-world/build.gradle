@@ -2,7 +2,7 @@ plugins {
     id 'war'
     id 'java'
     id 'idea'
-    id 'org.gretty' version '2.2.0'
+    id 'org.gretty' version '3.0.3'
 }
 
 repositories {
