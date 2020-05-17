@@ -12,9 +12,17 @@ repositories {
     maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
 }
 
+def jettyVersion = '9.4.28.v20200408'
+
 dependencies {
     compile("com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER")
     compile "com.graphql-java:graphql-java:14.0"
     compile "io.projectreactor:reactor-core:3.3.5.RELEASE"
     compile 'ch.qos.logback:logback-classic:1.0.13'
+    compile "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
+    compile "org.eclipse.jetty:jetty-annotations:${jettyVersion}"
+    compile "org.eclipse.jetty.websocket:websocket-api:${jettyVersion}"
+    compile "org.eclipse.jetty.websocket:websocket-server:${jettyVersion}"
+    compile "org.eclipse.jetty.websocket:javax-websocket-server-impl:${jettyVersion}"
+    compile "org.eclipse.jetty.websocket:websocket-common:${jettyVersion}"
 }
