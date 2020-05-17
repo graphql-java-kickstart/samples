@@ -1,0 +1,10 @@
+// Common settings only needed for Spring Boot based samples
+
+apply plugin: "io.spring.dependency-management"
+apply plugin: "org.springframework.boot"
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
+    }
+}

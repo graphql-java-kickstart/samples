@@ -1,4 +1,4 @@
-apply plugin: "org.springframework.boot"
+apply from: "../spring-boot-commons.gradle"
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-webflux"

@@ -4,7 +4,6 @@ plugins {
 
 subprojects {
     apply plugin: "java"
-    apply plugin: "io.spring.dependency-management"
 
     group 'com.graphql-kickstart.samples'
     version '0.0.1-SNAPSHOT'
@@ -19,12 +18,6 @@ subprojects {
     compileJava {
         sourceCompatibility = 11
         targetCompatibility = 11
-    }
-
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
-        }
     }
 
     test {
