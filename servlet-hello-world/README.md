@@ -1,5 +1,5 @@
 # GraphQL Servlet Hello World
 
-Run the gradle task `gretty.appStart` to start the webapp.
-This will start a webserver exposing the GraphQL servlet
-and the subscriptions websocket.
+Run the main HttpMain class to start up embedded Jetty.
+You can use the Altair Chrome plugin to run queries and subscriptions
+against it since no GraphQL IDE is included here.
