@@ -20,23 +20,15 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.Duration;
 import org.reactivestreams.Publisher;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
 
 class GraphQLConfigurationProvider {
 
-  private static final Logger log = LoggerFactory.getLogger(GraphQLConfigurationProvider.class);
-
   private static GraphQLConfigurationProvider instance;
 
-  private GraphQLConfiguration configuration;
-
-  Flux<String> flux;
+  private final GraphQLConfiguration configuration;
 
   private GraphQLConfigurationProvider() {
-    flux = Flux.just("pong").repeat(10).delayElements(Duration.ofSeconds(1)).share().publish().autoConnect();
-
     configuration = GraphQLConfiguration
         .with(createSchema())
         .with(GraphQLQueryInvoker.newBuilder()
@@ -72,11 +64,7 @@ class GraphQLConfigurationProvider {
   }
 
   private DataFetcher<Publisher<String>> pingFetcher() {
-    return environment -> {
-      log.info("Subscribe to ping");
-      System.out.println("Subscribe");
-      return Flux.from(flux);
-    };
+    return environment -> Flux.just("pong").repeat().delayElements(Duration.ofSeconds(1));
   }
 
   private Reader loadSchemaFile() {
