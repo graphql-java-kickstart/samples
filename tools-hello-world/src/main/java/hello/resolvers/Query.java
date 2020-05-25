@@ -18,7 +18,7 @@ public class Query implements GraphQLQueryResolver {
             .get("1000");
   }
 
-  public Human human(String id, DataFetchingEnvironment env) {
+  public Human human(String id) {
     return (Human) characterRepository.getCharacters()
         .values()
         .stream()
