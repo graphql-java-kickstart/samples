@@ -4,6 +4,9 @@ import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Cat;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Dog;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Pet;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
 import graphql.kickstart.spring.boot.graphql.annotations.example.services.HelloService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -47,6 +50,13 @@ public class Queries implements GraphQLQueryResolver, ApplicationContextAware {
     @GraphQLDescription("Returns all people in the database.")
     public static List<Person> people() {
         return personRepository.findAll();
+    }
+
+    @GraphQLField
+    @GraphQLNonNull
+    @GraphQLDescription("Returns pets")
+    public static List<Pet> pets() {
+        return List.of(new Dog(), new Cat());
     }
 
     @Override
