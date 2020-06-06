@@ -3,6 +3,9 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Car;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Truck;
+import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Vehicle;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Cat;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Dog;
@@ -57,6 +60,13 @@ public class Queries implements GraphQLQueryResolver, ApplicationContextAware {
     @GraphQLDescription("Returns pets")
     public static List<Pet> pets() {
         return List.of(new Dog(), new Cat());
+    }
+
+    @GraphQLField
+    @GraphQLNonNull
+    @GraphQLDescription("Returns vehicles")
+    public static List<Vehicle> vehicles() {
+        return List.of(new Car("ABC-123", 4), new Truck("CBA-321", 12));
     }
 
     @Override
