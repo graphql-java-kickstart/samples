@@ -3,13 +3,14 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDataFetcher;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
-import graphql.kickstart.tools.GraphQLSubscriptionResolver;
+import graphql.kickstart.graphql.annotations.GraphQLSubscriptionResolver;
 
 /**
  * Same restrictions/considerations apply as for the query resolver.
  * @see Queries
  */
-public class Subscriptions implements GraphQLSubscriptionResolver {
+@GraphQLSubscriptionResolver
+public class Subscriptions {
 
     /**
      * The subscription resolver should *not* return a {@link org.reactivestreams.Publisher} by itself. Instead,

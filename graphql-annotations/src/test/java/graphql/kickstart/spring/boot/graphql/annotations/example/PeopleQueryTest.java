@@ -4,7 +4,6 @@ import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,7 +57,6 @@ public class PeopleQueryTest {
             .containsExactly("Doe, John", "Doe, Jane");
     }
 
-    @NotNull
     private String generateId() {
         return String.valueOf(UUID.randomUUID()).toUpperCase(Locale.ENGLISH);
     }

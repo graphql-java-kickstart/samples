@@ -3,10 +3,10 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
+import graphql.kickstart.graphql.annotations.GraphQLMutationResolver;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.input.CreatePerson;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
-import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -21,7 +21,8 @@ import java.util.UUID;
  */
 @Service
 @NoArgsConstructor
-public class Mutations implements GraphQLMutationResolver, ApplicationContextAware {
+@GraphQLMutationResolver
+public class Mutations implements ApplicationContextAware {
 
     private static PersonRepository personRepository;
 

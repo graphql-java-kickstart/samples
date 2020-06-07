@@ -3,6 +3,7 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
+import graphql.kickstart.graphql.annotations.GraphQLQueryResolver;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Car;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Truck;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Vehicle;
@@ -12,13 +13,12 @@ import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Do
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.unions.Pet;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
 import graphql.kickstart.spring.boot.graphql.annotations.example.services.HelloService;
-import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +35,8 @@ import java.util.Optional;
  */
 @Service
 @NoArgsConstructor
-public class Queries implements GraphQLQueryResolver, ApplicationContextAware {
+@GraphQLQueryResolver
+public class Queries implements ApplicationContextAware {
 
     private static HelloService helloService;
     private static PersonRepository personRepository;
@@ -70,7 +71,7 @@ public class Queries implements GraphQLQueryResolver, ApplicationContextAware {
     }
 
     @Override
-    public void setApplicationContext(final @NotNull ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(final @NonNull ApplicationContext applicationContext) throws BeansException {
         helloService = applicationContext.getBean(HelloService.class);
         personRepository = applicationContext.getBean(PersonRepository.class);
     }
