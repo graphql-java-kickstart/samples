@@ -1,24 +1,4 @@
-plugins {
-    id "java"
-    id "idea"
-    id "org.springframework.boot" version "2.2.6.RELEASE"
-    id 'io.franzbecker.gradle-lombok' version '3.2.0'
-}
-
-apply plugin: 'io.spring.dependency-management'
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
-    }
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
-    mavenLocal()
-    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
-}
+apply from: "../spring-boot-commons.gradle"
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-webflux"

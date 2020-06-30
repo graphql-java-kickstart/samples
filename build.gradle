@@ -1,13 +1,30 @@
 plugins {
-    id 'idea'
+    id "org.springframework.boot" version "$LIB_SPRING_BOOT_VER" apply false
 }
 
 subprojects {
-    apply plugin: 'idea'
-    apply plugin: 'java'
+    apply plugin: "java"
+
+    group 'com.graphql-kickstart.samples'
+    version '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+    }
+
+    compileJava {
+        sourceCompatibility = 11
+        targetCompatibility = 11
+    }
+
+    test {
+        useJUnitPlatform()
+    }
 }
 
 wrapper {
-    gradleVersion = '5.6.4'
-    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+    distributionType = Wrapper.DistributionType.ALL
 }
