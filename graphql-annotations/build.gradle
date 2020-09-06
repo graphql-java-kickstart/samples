@@ -14,5 +14,6 @@ dependencies {
     runtimeOnly("com.h2database:h2")
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testAnnotationProcessor "org.projectlombok:lombok"
     testImplementation "com.graphql-java-kickstart:graphql-spring-boot-starter-test:$LIB_GRAPHQL_SPRING_BOOT_VER"
 }

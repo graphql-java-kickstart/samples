@@ -8,6 +8,7 @@ import graphql.kickstart.spring.boot.graphql.annotations.example.model.input.Cre
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -22,6 +23,7 @@ import java.util.UUID;
 @Service
 @NoArgsConstructor
 @GraphQLMutationResolver
+@Slf4j
 public class Mutations implements ApplicationContextAware {
 
     private static PersonRepository personRepository;
@@ -30,12 +32,14 @@ public class Mutations implements ApplicationContextAware {
     @GraphQLNonNull
     @GraphQLDescription("Creates a new person.")
     public static Person createPerson(final @GraphQLNonNull CreatePerson createPerson) {
+        log.info("Create person input: {}", createPerson);
         final Person newPerson = Person.builder()
             .firstName(createPerson.getFirstName())
             .lastName(createPerson.getLastName())
             .dateOfBirth(createPerson.getDateOfBirth())
             .id(String.valueOf(UUID.randomUUID()))
             .build();
+        log.info("Saving new person: {}", newPerson);
         return personRepository.save(newPerson);
     }
 
