@@ -13,3 +13,4 @@ include 'servlet-hello-world',
         'custom-error-handler',
         'file-upload',
         'tools-hello-world'
+include 'error-handling-exception-handlers'
