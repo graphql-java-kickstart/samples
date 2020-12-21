@@ -11,9 +11,12 @@ the following:
 
 ```java
 public GraphQLError singleError(Exception e);
+
 public GraphQLError singleError(Exception e, ErrorContext ctx);
-public Collection<GraphQLError> singleError(Exception e);
-public Collection<GraphQLError> singleError(Exception e, ErrorContext ctx);
+
+public Collection<GraphQLError> multipleErrors(Exception e);
+
+public Collection<GraphQLError> multipleErrors(Exception e, ErrorContext ctx);
 ```
 
 When returning a collection of errors you can return any type implementing the `Collection`, e.g. `List` or `Set`, etc.
@@ -51,5 +54,5 @@ public GraphQLError toCustomError(IllegalStateException e, ErrorContext errorCon
         .locations(errorContext.getLocations())
         .path(errorContext.getPath())
         .build();
-    }
+}
 ```
