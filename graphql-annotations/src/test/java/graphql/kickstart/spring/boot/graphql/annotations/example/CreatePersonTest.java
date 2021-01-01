@@ -10,8 +10,6 @@ import graphql.kickstart.spring.boot.graphql.annotations.example.repository.Pers
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,13 +23,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * For some reason, this test fails on GitHub CI on Linux + Java 11 and occasionally on Mac + Java 11.
- * Could not reproduce locally, both the test and the application seems to work fine.
- * Passes on Java 14 on all platforms, as well as on Windows with Java 11 and Java 11.
- */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@DisabledOnOs({OS.MAC, OS.LINUX})
 @Slf4j
 public class CreatePersonTest {
 
