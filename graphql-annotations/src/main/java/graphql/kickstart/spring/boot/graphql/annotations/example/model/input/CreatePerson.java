@@ -1,5 +1,6 @@
 package graphql.kickstart.spring.boot.graphql.annotations.example.model.input;
 
+import graphql.annotations.annotationTypes.GraphQLConstructor;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor_ = @GraphQLConstructor)
 public class CreatePerson {
 
     @GraphQLField
