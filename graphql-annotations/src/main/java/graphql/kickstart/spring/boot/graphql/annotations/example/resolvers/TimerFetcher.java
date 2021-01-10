@@ -8,9 +8,9 @@ import org.reactivestreams.Publisher;
 import java.util.concurrent.TimeUnit;
 
 /**
- * As in case of the resolvers, the GraphQL Annotations library will create the instance itself. It is not
- * possible to inject a bean into. Thus, this class must have a public parameterless constructor. To access Spring
- * Beans, similar ticks are needed as in case of resolvers.
+ * The GraphQL Annotations library will create the instance itself. Dependency injection is not supported.
+ * This class must have a public parameterless constructor. To access Spring Beans, similar ticks are needed as in case
+ * of resolvers.
  *
  * @see Queries
  * @see Subscriptions

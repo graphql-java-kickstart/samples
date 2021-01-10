@@ -26,12 +26,18 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * This is our query resolver. Unfortunately, GraphQL Java Annotations does not support dependency injection. It either
- * requires query resolvers to be static, or if instance methods are used - which must be annotated with
- * {@link graphql.annotations.annotationTypes.GraphQLInvokeDetached} - it creates the instance itself. For this, it
- * requires that our class has a parameterless constructor. Thus, we have to store our beans in static variables.
+ * This is our query resolver. Unfortunately, GraphQL Java Annotations does not support dependency injection. Either
+ * requires static query resolver methods, or if instance methods are used - which must be annotated with
+ * {@link graphql.annotations.annotationTypes.GraphQLInvokeDetached} - it creates the instance itself. The class must
+ * have a public parameterless constructor.
+ *
+ * One possible workaround is used here for bean injection.
  *
  * Furthermore, all query resolvers must be implemented in a single class.
+ *
+ * @see <a href="https://github.com/Enigmatis/graphql-java-annotations/issues/187">
+ *          Support for singletons? GraphQLAnnotations.object(mySingleton) #187
+ *      </a>
  */
 @Service
 @NoArgsConstructor
