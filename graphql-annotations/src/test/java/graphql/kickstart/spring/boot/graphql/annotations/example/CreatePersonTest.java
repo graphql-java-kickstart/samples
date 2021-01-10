@@ -2,7 +2,6 @@ package graphql.kickstart.spring.boot.graphql.annotations.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.input.CreatePerson;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
@@ -18,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,25 +67,20 @@ public class CreatePersonTest {
         final ObjectNode params = objectMapper.createObjectNode();
         params.set("createPersonInput", objectMapper.valueToTree(input));
         log.info("Create person variables: {}", params);
-        // WHEN
-        final GraphQLResponse graphQLResponse = graphQLTestTemplate.perform("create-person.graphql", params);
-        final Person actualResponse = graphQLResponse.get("$.data.createPerson", Person.class);
-        final Person actual = personRepository.findAll().stream().findFirst().orElse(null);
+        // WHEN - THEN
+        graphQLTestTemplate.perform("create-person.graphql", params)
+            .assertThatNoErrorsArePresent()
+            .assertThatField("$.data.createPerson.id").asString()
+                .isEqualTo(personRepository.findAll().stream().findFirst().map(Person::getId).map(String::toUpperCase)
+                    .orElseThrow())
+            .and().assertThatField("$.data.createPerson").as(Person.class)
+                .as("Should create the expected person.")
+                .usingRecursiveComparison()
+                .ignoringAllOverriddenEquals()
+                .ignoringFields("id")
+                .isEqualTo(expected)
+                .isEqualTo(personRepository.findAll().stream().findFirst().orElseThrow());
         // THEN
-        assertThat(actual)
-            .as("Should create the expected person.")
-            .isNotNull()
-            .usingRecursiveComparison()
-            .ignoringAllOverriddenEquals()
-            .ignoringFields("id")
-            .isEqualTo(expected);
-        assertThat(actual)
-            .as("Should return the created person.")
-            .isNotNull()
-            .usingRecursiveComparison()
-            .ignoringAllOverriddenEquals()
-            .ignoringFields("id")
-            .isEqualTo(actualResponse);
-        assertThat(actualResponse.getId()).isEqualTo(actual.getId().toUpperCase(Locale.ENGLISH));
+        assertThat(personRepository.count()).as("Should create only one person.").isOne();
     }
 }

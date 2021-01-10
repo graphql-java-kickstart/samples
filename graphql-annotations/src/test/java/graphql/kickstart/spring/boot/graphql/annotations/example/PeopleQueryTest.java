@@ -1,6 +1,5 @@
 package graphql.kickstart.spring.boot.graphql.annotations.example;
 
-import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;
@@ -12,11 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PeopleQueryTest {
@@ -49,12 +45,11 @@ public class PeopleQueryTest {
             .dateOfBirth(LocalDate.parse("1900-02-01"))
             .build());
         // WHEN
-        final GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("people.graphql");
-        final List<Person> actual = graphQLResponse.getList("$.data.people", Person.class);
-        // THEN
-        assertThat(actual).usingRecursiveFieldByFieldElementComparator().containsExactly(person1, person2);
-        assertThat(graphQLResponse.getList("$.data.people[*].fullName", String.class))
-            .containsExactly("Doe, John", "Doe, Jane");
+        graphQLTestTemplate.postForResource("people.graphql")
+            .assertThatField("$.data.people").asListOf(Person.class)
+                .usingRecursiveFieldByFieldElementComparator().containsExactly(person1, person2)
+            .and().assertThatField("$.data.people[*].fullName").asListOf(String.class)
+                .containsExactly("Doe, John", "Doe, Jane");
     }
 
     private String generateId() {

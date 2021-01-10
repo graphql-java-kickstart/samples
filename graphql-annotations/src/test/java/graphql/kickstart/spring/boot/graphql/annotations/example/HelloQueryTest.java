@@ -41,9 +41,9 @@ public class HelloQueryTest {
         final String name = "Johnny";
         final ObjectNode params = objectMapper.createObjectNode();
         params.put("who", name);
-        // WHEN
-        final String actual = graphQLTestTemplate.perform(HELLO_GRAPHQL_RESOURCE, params).get(HELLO_DATA_FIELD);
-        // THEN
-        assertThat(actual).isEqualTo(String.format("Hello, %s!", name));
+        // WHEN - THEN
+        graphQLTestTemplate.perform(HELLO_GRAPHQL_RESOURCE, params)
+            .assertThatNoErrorsArePresent()
+            .assertThatField(HELLO_DATA_FIELD).asString().isEqualTo(String.format("Hello, %s!", name));
     }
 }
