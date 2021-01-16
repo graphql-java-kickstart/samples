@@ -8,8 +8,8 @@ import reactor.core.publisher.Mono;
 @Component
 class HelloQuery implements GraphQLQueryResolver {
 
-  public CompletableFuture<String> hello() {
-    return Mono.just("Hello world").toFuture();
+  public Mono<String> hello() {
+    return Mono.just("Hello world");
   }
 
 }
