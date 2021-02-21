@@ -1,0 +1,10 @@
+query {
+    pets {
+        ... on Dog {
+            woof
+        }
+        ... on Cat {
+            meow
+        }
+    }
+}
