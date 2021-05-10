@@ -69,5 +69,4 @@ class MySubscriber implements Subscriber<Integer> {
   public void onError(Throwable t) {
     log.info("Subscriber Error >> %s", t);
   }
-
 }

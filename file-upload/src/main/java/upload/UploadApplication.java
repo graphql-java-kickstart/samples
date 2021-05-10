@@ -17,5 +17,4 @@ public class UploadApplication {
   GraphQLScalarType uploadScalarType() {
     return ApolloScalars.Upload;
   }
-
 }

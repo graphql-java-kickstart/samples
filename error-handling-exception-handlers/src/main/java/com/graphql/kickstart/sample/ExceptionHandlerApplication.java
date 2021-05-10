@@ -9,5 +9,4 @@ public class ExceptionHandlerApplication {
   public static void main(String[] args) {
     SpringApplication.run(ExceptionHandlerApplication.class, args);
   }
-
 }

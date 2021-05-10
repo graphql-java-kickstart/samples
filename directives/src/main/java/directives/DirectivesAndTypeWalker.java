@@ -12,13 +12,18 @@ import java.util.function.BiFunction;
 
 class DirectivesAndTypeWalker {
 
-  public static boolean isSuitable(GraphQLArgument argument, BiFunction<GraphQLInputType, GraphQLDirective, Boolean> isSuitable) {
+  public static boolean isSuitable(
+      GraphQLArgument argument,
+      BiFunction<GraphQLInputType, GraphQLDirective, Boolean> isSuitable) {
     GraphQLInputType inputType = argument.getType();
     List<GraphQLDirective> directives = argument.getDirectives();
     return walkInputType(inputType, directives, isSuitable);
   }
 
-  private static boolean walkInputType(GraphQLInputType inputType, List<GraphQLDirective> directives, BiFunction<GraphQLInputType, GraphQLDirective, Boolean> isSuitable) {
+  private static boolean walkInputType(
+      GraphQLInputType inputType,
+      List<GraphQLDirective> directives,
+      BiFunction<GraphQLInputType, GraphQLDirective, Boolean> isSuitable) {
     GraphQLInputType unwrappedInputType = Util.unwrapNonNull(inputType);
     for (GraphQLDirective directive : directives) {
       if (isSuitable.apply(unwrappedInputType, directive)) {
@@ -47,5 +52,4 @@ class DirectivesAndTypeWalker {
     }
     return false;
   }
-
 }

@@ -7,5 +7,4 @@ class ConnectionParams {
   String getAuthToken() {
     return authToken;
   }
-
 }

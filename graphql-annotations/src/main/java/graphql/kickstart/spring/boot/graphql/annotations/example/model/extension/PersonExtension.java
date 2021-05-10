@@ -12,11 +12,11 @@ import lombok.RequiredArgsConstructor;
 @GraphQLTypeExtension(Person.class)
 public class PersonExtension {
 
-    private final Person person;
+  private final Person person;
 
-    @GraphQLField
-    @GraphQLNonNull
-    public String fullName() {
-        return String.format("%s, %s", person.getLastName(), person.getFirstName());
-    }
+  @GraphQLField
+  @GraphQLNonNull
+  public String fullName() {
+    return String.format("%s, %s", person.getLastName(), person.getFirstName());
+  }
 }

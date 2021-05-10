@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService {
 
-    public String sayHello(final String whom) {
-        return String.format("Hello, %s!", whom);
-    }
+  public String sayHello(final String whom) {
+    return String.format("Hello, %s!", whom);
+  }
 }

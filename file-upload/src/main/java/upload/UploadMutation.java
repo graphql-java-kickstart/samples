@@ -15,5 +15,4 @@ class UploadMutation implements GraphQLMutationResolver {
     part.write(part.getSubmittedFileName());
     return true;
   }
-
 }

@@ -3,12 +3,11 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.model.input;
 import graphql.annotations.annotationTypes.GraphQLConstructor;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @Builder
@@ -16,14 +15,9 @@ import java.time.LocalDate;
 @AllArgsConstructor(onConstructor_ = @GraphQLConstructor)
 public class CreatePerson {
 
-    @GraphQLField
-    @GraphQLNonNull
-    private String firstName;
+  @GraphQLField @GraphQLNonNull private String firstName;
 
-    @GraphQLField
-    @GraphQLNonNull
-    private String lastName;
+  @GraphQLField @GraphQLNonNull private String lastName;
 
-    @GraphQLField
-    private LocalDate dateOfBirth;
+  @GraphQLField private LocalDate dateOfBirth;
 }

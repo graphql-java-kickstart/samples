@@ -1,7 +1,6 @@
 package hello.resolvers;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
-
 import hello.types.Human;
 import java.util.Map;
 import java.util.UUID;

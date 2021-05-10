@@ -29,15 +29,17 @@ class GraphQLConfigurationProvider {
   private final GraphQLConfiguration configuration;
 
   private GraphQLConfigurationProvider() {
-    configuration = GraphQLConfiguration
-        .with(createSchema())
-        .with(GraphQLQueryInvoker.newBuilder()
-            .withExecutionStrategyProvider(new DefaultExecutionStrategyProvider(
-                new AsyncExecutionStrategy(),
-                null,
-                new SubscriptionExecutionStrategy()))
-            .build())
-        .build();
+    configuration =
+        GraphQLConfiguration.with(createSchema())
+            .with(
+                GraphQLQueryInvoker.newBuilder()
+                    .withExecutionStrategyProvider(
+                        new DefaultExecutionStrategyProvider(
+                            new AsyncExecutionStrategy(),
+                            null,
+                            new SubscriptionExecutionStrategy()))
+                    .build())
+            .build();
   }
 
   static GraphQLConfigurationProvider getInstance() {
@@ -54,10 +56,11 @@ class GraphQLConfigurationProvider {
   private GraphQLSchema createSchema() {
     TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(loadSchemaFile());
 
-    RuntimeWiring runtimeWiring = newRuntimeWiring()
-        .type(newTypeWiring("Query").dataFetcher("hello", new StaticDataFetcher("world")))
-        .type(newTypeWiring("Subscription").dataFetcher("ping", pingFetcher()))
-        .build();
+    RuntimeWiring runtimeWiring =
+        newRuntimeWiring()
+            .type(newTypeWiring("Query").dataFetcher("hello", new StaticDataFetcher("world")))
+            .type(newTypeWiring("Subscription").dataFetcher("ping", pingFetcher()))
+            .build();
 
     SchemaGenerator schemaGenerator = new SchemaGenerator();
     return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
@@ -71,5 +74,4 @@ class GraphQLConfigurationProvider {
     InputStream stream = getClass().getClassLoader().getResourceAsStream("schema.graphqls");
     return new InputStreamReader(stream);
   }
-
 }

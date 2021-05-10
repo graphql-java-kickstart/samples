@@ -8,5 +8,4 @@ class InputObject {
   private double value;
   private double nolimit;
   private double limit;
-
 }

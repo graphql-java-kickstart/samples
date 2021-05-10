@@ -9,5 +9,4 @@ class QueryResolver implements GraphQLQueryResolver {
   String hello() {
     return "world";
   }
-
 }
