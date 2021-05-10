@@ -21,7 +21,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 class MyPublisher implements Publisher<Integer> {
 
   private static final Logger log = LoggerFactory.getLogger(MyPublisher.class);
-  private final List<MySubscription> subscriptions = Collections.synchronizedList(new ArrayList<>());
+  private final List<MySubscription> subscriptions =
+      Collections.synchronizedList(new ArrayList<>());
   private final CompletableFuture<Void> terminated = new CompletableFuture<>();
   private ExecutorService executor = Executors.newFixedThreadPool(4);
 
@@ -85,31 +86,31 @@ class MyPublisher implements Publisher<Integer> {
     private void publishNextItem() {
       Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-      executor.execute(() -> {
-        for (int i = 0; i < 100; i++) {
-          try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
+      executor.execute(
+          () -> {
+            for (int i = 0; i < 100; i++) {
+              try {
+                Thread.sleep(1000);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
 
-          int v = value.incrementAndGet();
-          log.info("publish item: [{}] with principal {}", v, principal);
-          subscriber.onNext(v);
-        }
-      });
+              int v = value.incrementAndGet();
+              log.info("publish item: [{}] with principal {}", v, principal);
+              subscriber.onNext(v);
+            }
+          });
     }
 
     private void shutdown() {
       log.info("Shut down executor...");
       executor.shutdown();
-      newSingleThreadExecutor().submit(() -> {
-
-        log.info("Shutdown complete.");
-        terminated.complete(null);
-      });
+      newSingleThreadExecutor()
+          .submit(
+              () -> {
+                log.info("Shutdown complete.");
+                terminated.complete(null);
+              });
     }
-
   }
-
 }

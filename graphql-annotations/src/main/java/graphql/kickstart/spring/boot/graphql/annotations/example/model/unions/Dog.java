@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Dog implements Pet {
 
-    @GraphQLField
-    @GraphQLNonNull
-    public String woof() {
-        return "Woof, woof!";
-    }
+  @GraphQLField
+  @GraphQLNonNull
+  public String woof() {
+    return "Woof, woof!";
+  }
 }

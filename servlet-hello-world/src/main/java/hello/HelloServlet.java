@@ -9,5 +9,4 @@ public class HelloServlet extends GraphQLHttpServlet {
   protected GraphQLConfiguration getConfiguration() {
     return GraphQLConfigurationProvider.getInstance().getConfiguration();
   }
-
 }

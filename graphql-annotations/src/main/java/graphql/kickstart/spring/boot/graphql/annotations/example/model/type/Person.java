@@ -4,16 +4,14 @@ import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLID;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.directives.UpperCaseDirective;
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.time.LocalDate;
 
 @Data
 @Builder
@@ -22,23 +20,17 @@ import java.time.LocalDate;
 @Entity
 public class Person {
 
-    @Id
-    @GraphQLID
-    @GraphQLField
-    @GraphQLNonNull
-    @UpperCaseDirective
-    private String id;
+  @Id @GraphQLID @GraphQLField @GraphQLNonNull @UpperCaseDirective private String id;
 
-    @Column(nullable = false)
-    @GraphQLField
-    @GraphQLNonNull
-    private String firstName;
+  @Column(nullable = false)
+  @GraphQLField
+  @GraphQLNonNull
+  private String firstName;
 
-    @Column(nullable = false)
-    @GraphQLField
-    @GraphQLNonNull
-    private String lastName;
+  @Column(nullable = false)
+  @GraphQLField
+  @GraphQLNonNull
+  private String lastName;
 
-    @GraphQLField
-    private LocalDate dateOfBirth;
+  @GraphQLField private LocalDate dateOfBirth;
 }

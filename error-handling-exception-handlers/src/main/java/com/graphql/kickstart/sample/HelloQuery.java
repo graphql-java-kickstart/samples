@@ -19,8 +19,8 @@ class HelloQuery implements GraphQLQueryResolver {
 
   @ExceptionHandler(value = IllegalStateException.class)
   public GraphQLError toCustomError(IllegalStateException e, ErrorContext errorContext) {
-    Map<String, Object> extensions = Optional
-        .ofNullable(errorContext.getExtensions()).orElseGet(HashMap::new);
+    Map<String, Object> extensions =
+        Optional.ofNullable(errorContext.getExtensions()).orElseGet(HashMap::new);
     extensions.put("my-custom-code", "some-custom-error");
     return GraphqlErrorBuilder.newError()
         .message(e.getMessage())
@@ -30,5 +30,4 @@ class HelloQuery implements GraphQLQueryResolver {
         .path(errorContext.getPath())
         .build();
   }
-
 }

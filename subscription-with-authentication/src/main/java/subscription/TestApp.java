@@ -12,5 +12,4 @@ class TestApp {
 
     publisher.waitUntilTerminated();
   }
-
 }
