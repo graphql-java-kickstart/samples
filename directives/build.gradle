@@ -4,7 +4,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
     runtimeOnly "com.graphql-java-kickstart:graphiql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
-    implementation 'com.graphql-java:graphql-java-extended-validation:0.0.4'
+    implementation 'com.graphql-java:graphql-java-extended-validation:16.0.0'
 
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
