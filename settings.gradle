@@ -12,5 +12,6 @@ include 'servlet-hello-world',
         'spring-boot-webflux',
         'custom-error-handler',
         'file-upload',
-        'tools-hello-world'
+        'tools-hello-world',
+        'graphql-annotations'
 include 'error-handling-exception-handlers'
