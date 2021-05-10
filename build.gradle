@@ -1,10 +1,22 @@
 plugins {
     id "org.springframework.boot" version "$LIB_SPRING_BOOT_VER" apply false
     id 'com.github.sherter.google-java-format' version '0.9' apply false
+    id "org.sonarqube" version "3.2.0"
+    id "jacoco"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "graphql-java-kickstart_graphql-java-kickstart-samples"
+        property "sonar.organization", "graphql-java-kickstart"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 subprojects {
     apply plugin: "java"
+    apply plugin: 'jacoco'
+    apply plugin: 'org.sonarqube'
     apply plugin: 'com.github.sherter.google-java-format'
 
     group 'com.graphql-kickstart.samples'
@@ -25,6 +37,12 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+        }
     }
 }
 
