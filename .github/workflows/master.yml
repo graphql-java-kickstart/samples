@@ -41,7 +41,7 @@ jobs:
 
   test:
     name: Test run
-    needs: validation
+    needs: [ validation, verify-google-java-format ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -69,7 +69,7 @@ jobs:
 
   sonar:
     name: Sonar analysis
-    needs: validation
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
