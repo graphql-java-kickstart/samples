@@ -11,8 +11,7 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
-        maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     compileJava {
