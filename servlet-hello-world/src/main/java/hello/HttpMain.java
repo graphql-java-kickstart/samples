@@ -11,24 +11,23 @@ class HttpMain {
   private static final int PORT = 8080;
 
   public static void main(String[] args) throws Exception {
-    Server server = new Server();
-    ServerConnector connector = new ServerConnector(server);
+    var server = new Server();
+    var connector = new ServerConnector(server);
     connector.setPort(PORT);
     server.addConnector(connector);
 
-    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+    var context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
     context.addServlet(HelloServlet.class, "/graphql");
     server.setHandler(context);
 
     WebSocketServerContainerInitializer.configure(
         context,
-        (servletContext, serverContainer) -> {
-          serverContainer.addEndpoint(
-              ServerEndpointConfig.Builder.create(SubscriptionEndpoint.class, "/subscriptions")
-                  .configurator(new GraphQLWSEndpointConfigurer())
-                  .build());
-        });
+        (servletContext, serverContainer) ->
+            serverContainer.addEndpoint(
+                ServerEndpointConfig.Builder.create(SubscriptionEndpoint.class, "/subscriptions")
+                    .configurator(new GraphQLWSEndpointConfigurer())
+                    .build()));
 
     server.setHandler(context);
 
