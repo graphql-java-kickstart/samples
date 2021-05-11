@@ -1,6 +1,6 @@
 package subscription;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ class MySubscriber implements Subscriber<Integer> {
   private static final Logger log = LoggerFactory.getLogger(MySubscriber.class);
 
   private static final int DEMAND = 3;
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   private String name;
   private Subscription subscription;

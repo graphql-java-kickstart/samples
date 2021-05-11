@@ -24,19 +24,19 @@ class MyPublisher implements Publisher<Integer> {
   private final List<MySubscription> subscriptions =
       Collections.synchronizedList(new ArrayList<>());
   private final CompletableFuture<Void> terminated = new CompletableFuture<>();
-  private ExecutorService executor = Executors.newFixedThreadPool(4);
+  private final ExecutorService executor = Executors.newFixedThreadPool(4);
 
   public void waitUntilTerminated() throws InterruptedException {
     try {
       terminated.get();
     } catch (ExecutionException e) {
-      System.out.println(e);
+      log.error("Terminated unexpectedly", e);
     }
   }
 
   @Override
   public void subscribe(Subscriber<? super Integer> subscriber) {
-    MySubscription subscription = new MySubscription(subscriber, executor);
+    var subscription = new MySubscription(subscriber, executor);
 
     subscriptions.add(subscription);
 
@@ -47,8 +47,8 @@ class MyPublisher implements Publisher<Integer> {
 
     private final ExecutorService executor;
     private final AtomicInteger value;
-    private Subscriber<? super Integer> subscriber;
-    private AtomicBoolean isCanceled;
+    private final Subscriber<? super Integer> subscriber;
+    private final AtomicBoolean isCanceled;
 
     public MySubscription(Subscriber<? super Integer> subscriber, ExecutorService executor) {
       this.subscriber = subscriber;
@@ -77,7 +77,7 @@ class MyPublisher implements Publisher<Integer> {
 
       synchronized (subscriptions) {
         subscriptions.remove(this);
-        if (subscriptions.size() == 0) {
+        if (subscriptions.isEmpty()) {
           shutdown();
         }
       }
@@ -88,11 +88,12 @@ class MyPublisher implements Publisher<Integer> {
 
       executor.execute(
           () -> {
-            for (int i = 0; i < 100; i++) {
+            for (var i = 0; i < 100; i++) {
               try {
                 Thread.sleep(1000);
               } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("Interrupted", e);
+                Thread.currentThread().interrupt();
               }
 
               int v = value.incrementAndGet();
