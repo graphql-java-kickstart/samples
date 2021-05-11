@@ -9,5 +9,4 @@ class HelloQuery implements GraphQLQueryResolver {
   public String hello() {
     throw new IllegalStateException("Test exception");
   }
-
 }

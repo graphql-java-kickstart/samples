@@ -21,12 +21,14 @@ class HttpMain {
     context.addServlet(HelloServlet.class, "/graphql");
     server.setHandler(context);
 
-    WebSocketServerContainerInitializer.configure(context, (servletContext, serverContainer) -> {
-      serverContainer.addEndpoint(ServerEndpointConfig.Builder
-          .create(SubscriptionEndpoint.class, "/subscriptions")
-          .configurator(new GraphQLWSEndpointConfigurer())
-          .build());
-    });
+    WebSocketServerContainerInitializer.configure(
+        context,
+        (servletContext, serverContainer) -> {
+          serverContainer.addEndpoint(
+              ServerEndpointConfig.Builder.create(SubscriptionEndpoint.class, "/subscriptions")
+                  .configurator(new GraphQLWSEndpointConfigurer())
+                  .build());
+        });
 
     server.setHandler(context);
 
@@ -34,5 +36,4 @@ class HttpMain {
     server.dump(System.err);
     server.join();
   }
-
 }

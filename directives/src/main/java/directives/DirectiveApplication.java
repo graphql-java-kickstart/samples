@@ -23,12 +23,12 @@ public class DirectiveApplication {
     return new RangeDirective();
   }
 
-//  @Bean
-//  public SchemaDirectiveWiring validationSchemaDirective() {
-//    ValidationRules validationRules = ValidationRules.newValidationRules()
-//        .onValidationErrorStrategy(OnValidationErrorStrategy.RETURN_NULL)
-//        .build();
-//    return new ValidationSchemaWiring(validationRules);
-//  }
+  //  @Bean
+  //  public SchemaDirectiveWiring validationSchemaDirective() {
+  //    ValidationRules validationRules = ValidationRules.newValidationRules()
+  //        .onValidationErrorStrategy(OnValidationErrorStrategy.RETURN_NULL)
+  //        .build();
+  //    return new ValidationSchemaWiring(validationRules);
+  //  }
 
 }

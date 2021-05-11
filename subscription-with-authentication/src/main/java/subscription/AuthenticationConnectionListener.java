@@ -24,5 +24,4 @@ class AuthenticationConnectionListener implements ApolloSubscriptionConnectionLi
     session.getUserProperties().put("CONNECT_TOKEN", authentication);
     SecurityContextHolder.getContext().setAuthentication(authentication);
   }
-
 }

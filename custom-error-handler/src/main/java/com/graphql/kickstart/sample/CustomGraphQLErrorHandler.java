@@ -15,5 +15,4 @@ class CustomGraphQLErrorHandler implements GraphQLErrorHandler {
     log.info("Handle errors: {}", list);
     return list;
   }
-
 }

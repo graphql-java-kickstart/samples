@@ -21,14 +21,16 @@ class MySubscriptionResolver implements GraphQLSubscriptionResolver {
 
   Publisher<Integer> hello(DataFetchingEnvironment env) {
     GraphQLWebSocketContext context = env.getContext();
-    Optional<Authentication> authentication = Optional.ofNullable(context.getSession())
-        .map(Session::getUserProperties)
-        .map(props -> props.get("CONNECT_TOKEN"))
-        .map(Authentication.class::cast);
+    Optional<Authentication> authentication =
+        Optional.ofNullable(context.getSession())
+            .map(Session::getUserProperties)
+            .map(props -> props.get("CONNECT_TOKEN"))
+            .map(Authentication.class::cast);
     log.info("Subscribe to publisher with token: {}", authentication);
     authentication.ifPresent(SecurityContextHolder.getContext()::setAuthentication);
-    log.info("Security context principal: {}", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    log.info(
+        "Security context principal: {}",
+        SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     return publisher;
   }
-
 }

@@ -13,7 +13,8 @@ public class GraphQLWSEndpointConfigurer extends ServerEndpointConfig.Configurat
   }
 
   @Override
-  public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+  public void modifyHandshake(
+      ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
     endpoint.modifyHandshake(sec, request, response);
   }
 
@@ -22,5 +23,4 @@ public class GraphQLWSEndpointConfigurer extends ServerEndpointConfig.Configurat
   public <T> T getEndpointInstance(Class<T> endpointClass) {
     return (T) this.endpoint;
   }
-
 }
