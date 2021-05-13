@@ -15,3 +15,9 @@ include 'servlet-hello-world',
         'tools-hello-world',
         'graphql-annotations'
 include 'error-handling-exception-handlers'
+include 'editors'
+include 'subscription'
+include 'request-scoped-dataloader'
+include 'webflux'
+include 'tools-spring-boot'
+include 'spring-common'

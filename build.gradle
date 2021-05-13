@@ -1,6 +1,5 @@
 plugins {
     id "org.springframework.boot" version "$LIB_SPRING_BOOT_VER" apply false
-    id 'com.github.sherter.google-java-format' version '0.9' apply false
     id "org.sonarqube" version "3.2.0"
     id "jacoco"
 }
@@ -17,7 +16,6 @@ subprojects {
     apply plugin: "java"
     apply plugin: 'jacoco'
     apply plugin: 'org.sonarqube'
-    apply plugin: 'com.github.sherter.google-java-format'
 
     group 'com.graphql-kickstart.samples'
     version '0.0.1-SNAPSHOT'
@@ -32,8 +30,6 @@ subprojects {
         sourceCompatibility = 11
         targetCompatibility = 11
     }
-
-    compileJava.mustRunAfter verifyGoogleJavaFormat
 
     test {
         useJUnitPlatform()
