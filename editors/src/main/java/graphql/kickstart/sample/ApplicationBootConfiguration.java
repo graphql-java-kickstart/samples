@@ -42,7 +42,16 @@ public class ApplicationBootConfiguration {
   @Bean
   GraphQLSchema schema() {
     DataFetcher<CompletableFuture<String>> test =
-        env -> CompletableFuture.supplyAsync(() -> "response");
+        env ->
+            CompletableFuture.supplyAsync(
+                () -> {
+                  try {
+                    Thread.sleep(2000);
+                  } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                  }
+                  return "response";
+                });
     return GraphQLSchema.newSchema()
         .query(
             GraphQLObjectType.newObject()

@@ -17,6 +17,7 @@ management:
 graphql:
   servlet:
     actuator-metrics: true
+    async-timeout: 1000
   playground:
     enabled: true
     cdn:
