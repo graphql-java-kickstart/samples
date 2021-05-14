@@ -1,6 +1,6 @@
 apply from: "../spring-boot-commons.gradle"
 
-def LIB_GRAPHQL_SPRING_BOOT_VER = "11.0.0"
+def LIB_GRAPHQL_SPRING_BOOT_VER = "11.1.0"
 
 dependencies {
     implementation "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-graphql-annotations:$LIB_GRAPHQL_SPRING_BOOT_VER"
