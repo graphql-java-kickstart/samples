@@ -3,7 +3,7 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDataFetcher;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
-import graphql.kickstart.graphql.annotations.GraphQLSubscriptionResolver;
+import graphql.kickstart.annotations.GraphQLSubscriptionResolver;
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @DisplayName("Testing the \"hello\" query.")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloQueryTest {
+class HelloQueryTest {
 
   private static final String HELLO_DATA_FIELD = "$.data.hello";
   private static final String HELLO_GRAPHQL_RESOURCE = "hello.graphql";

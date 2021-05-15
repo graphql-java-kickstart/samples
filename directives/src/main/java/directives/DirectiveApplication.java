@@ -1,6 +1,6 @@
 package directives;
 
-import graphql.kickstart.tools.boot.SchemaDirective;
+import graphql.kickstart.autoconfigure.tools.SchemaDirective;
 import graphql.schema.idl.SchemaDirectiveWiring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

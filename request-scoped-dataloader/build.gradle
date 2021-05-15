@@ -1,0 +1,9 @@
+apply from: "../spring-boot-commons.gradle"
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter")
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test")
+}

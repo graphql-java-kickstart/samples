@@ -1,8 +1,7 @@
 apply from: "../spring-boot-commons.gradle"
 
 dependencies {
-    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
-    runtimeOnly "com.graphql-java-kickstart:graphiql-spring-boot-starter:$LIB_GRAPHQL_SPRING_BOOT_VER"
+    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter"
     implementation "org.springframework.boot:spring-boot-starter-web"
 
     compileOnly "org.projectlombok:lombok"

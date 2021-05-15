@@ -3,7 +3,7 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
-import graphql.kickstart.graphql.annotations.GraphQLQueryResolver;
+import graphql.kickstart.annotations.GraphQLQueryResolver;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Car;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Truck;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.interfaces.Vehicle;

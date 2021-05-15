@@ -3,7 +3,7 @@ package graphql.kickstart.spring.boot.graphql.annotations.example.resolvers;
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
-import graphql.kickstart.graphql.annotations.GraphQLMutationResolver;
+import graphql.kickstart.annotations.GraphQLMutationResolver;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.input.CreatePerson;
 import graphql.kickstart.spring.boot.graphql.annotations.example.model.type.Person;
 import graphql.kickstart.spring.boot.graphql.annotations.example.repository.PersonRepository;

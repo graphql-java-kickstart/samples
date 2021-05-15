@@ -25,7 +25,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          distribution: 'zulu'
+          distribution: 'adopt'
           java-version: ${{ matrix.java }}
       - name: Make gradlew executable (non-Windows only)
         if: matrix.os != 'windows-latest'
