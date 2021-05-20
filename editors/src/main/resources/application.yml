@@ -47,4 +47,5 @@ graphql:
   voyager:
     enabled: true
     cdn:
-      enabled: false
+      enabled: true
+      version: 1.0.0-rc.31

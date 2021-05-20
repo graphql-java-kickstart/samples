@@ -1,11 +1,16 @@
 spring:
   application:
     name: graphql-java-tools-app
+  security:
+    user:
+      password: graphql
+
 server:
   port: 9001
 graphql:
   servlet:
     exception-handlers-enabled: true
-    async-timeout: 500
+    async:
+      timeout: 500
   graphiql:
     enabled: true

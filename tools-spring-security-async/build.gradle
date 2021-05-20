@@ -17,23 +17,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-apply plugin: "org.springframework.boot"
-apply plugin: "io.spring.dependency-management"
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-starter-parent:$LIB_SPRING_BOOT_VER"
-        mavenBom "com.graphql-java-kickstart:graphql-spring-boot-dependencies:$LIB_GRAPHQL_SPRING_BOOT_VER"
-    }
-}
+apply from: "../spring-boot-commons.gradle"
 
 dependencies {
     implementation("com.graphql-java-kickstart:graphql-spring-boot-starter")
-
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-security")
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test")
 
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"

@@ -2,8 +2,10 @@ package com.graphql.sample.boot;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import java.util.concurrent.CompletableFuture;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 class Query implements GraphQLQueryResolver {
 
@@ -14,6 +16,7 @@ class Query implements GraphQLQueryResolver {
    * @return non-blocking <tt>CompletableFuture</tt> that will return the <tt>String</tt> value
    */
   CompletableFuture<String> getHello() {
+    log.info("Executing query");
     return CompletableFuture.supplyAsync(
         () -> {
           try {

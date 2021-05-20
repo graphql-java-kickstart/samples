@@ -1,0 +1,12 @@
+package com.graphql.sample.boot;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AsyncSecurityApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(AsyncSecurityApplication.class, args);
+  }
+}
