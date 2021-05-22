@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @GraphQLTest
-class GraphQLToolsSampleApplicationTest {
+class AsyncSecurityApplicationTest {
 
   @Autowired private GraphQLTestTemplate graphQLTestTemplate;
 
@@ -28,7 +28,8 @@ class GraphQLToolsSampleApplicationTest {
         graphQLTestTemplate.postForResource("graphql/post-get-comments.graphql");
     assertNotNull(response);
     assertThat(response.isOk()).isTrue();
-    assertThat(response.get("$.data.post.id")).isEqualTo("1");
+    assertThat(response.get("$.errors[0].message"))
+        .isEqualTo("Execution canceled because timeout of 500 millis was reached");
   }
 
   @Test
@@ -40,7 +41,8 @@ class GraphQLToolsSampleApplicationTest {
             "graphql/post-get-comments-with-fragment.graphql", fragments);
     assertNotNull(response);
     assertThat((response.isOk())).isTrue();
-    assertThat(response.get("$.data.post.id")).isEqualTo("1");
+    assertThat(response.get("$.errors[0].message"))
+        .isEqualTo("Execution canceled because timeout of 500 millis was reached");
   }
 
   @Test
