@@ -95,8 +95,8 @@ public class RangeDirective implements SchemaDirectiveWiring {
   private List<GraphQLError> apply(
       GraphQLDirectiveContainer it, DataFetchingEnvironment env, Object value) {
     GraphQLDirective directive = it.getDirective("range");
-    double min = (double) directive.getArgument("min").getValue();
-    double max = (double) directive.getArgument("max").getValue();
+    double min = (double) directive.getArgument("min").getArgumentValue().getValue();
+    double max = (double) directive.getArgument("max").getArgumentValue().getValue();
 
     if (value instanceof Double && ((double) value < min || (double) value > max)) {
       return singletonList(
