@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
           java-version: 11
       - name: Cache Gradle
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           java-version: 11
         with:
@@ -54,13 +54,13 @@ jobs:
           distribution: 'temurin'
           java-version: 11
       - name: Cache SonarCloud packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache Gradle packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
