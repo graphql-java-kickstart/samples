@@ -1,4 +1,4 @@
-def jettyVersion = '9.4.46.v20220331'
+def jettyVersion = '9.4.47.v20220610'
 
 dependencies {
     implementation "com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER"
