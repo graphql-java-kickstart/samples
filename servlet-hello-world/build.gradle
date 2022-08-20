@@ -4,7 +4,7 @@ dependencies {
     implementation "com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER"
     implementation "io.projectreactor:reactor-core:3.4.22"
     implementation 'ch.qos.logback:logback-classic:1.2.11'
-    implementation 'org.slf4j:slf4j-simple:2.0.0-beta1'
+    implementation 'org.slf4j:slf4j-simple:2.0.0'
     implementation "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
     implementation "org.eclipse.jetty:jetty-annotations:${jettyVersion}"
     implementation "org.eclipse.jetty.websocket:websocket-api:${jettyVersion}"
