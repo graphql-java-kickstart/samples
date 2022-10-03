@@ -1,6 +1,5 @@
 package graphql.servlet.examples.dataloader.requestscope;
 
-import graphql.kickstart.execution.context.GraphQLContext;
 import graphql.kickstart.tools.GraphQLResolver;
 import graphql.schema.DataFetchingEnvironment;
 import java.util.concurrent.CompletableFuture;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class CustomerResolver implements GraphQLResolver<Customer> {
 
   public CompletableFuture<String> getName(Customer customer, DataFetchingEnvironment dfe) {
-    DataLoaderRegistry registry = ((GraphQLContext) dfe.getContext()).getDataLoaderRegistry();
+    DataLoaderRegistry registry = dfe.getDataLoaderRegistry();
     DataLoader<Integer, String> customerLoader = registry.getDataLoader("customerDataLoader");
     if (customerLoader != null) {
       return customerLoader.load(customer.getCustomerId());
