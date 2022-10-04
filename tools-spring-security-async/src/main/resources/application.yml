@@ -11,6 +11,7 @@ graphql:
   servlet:
     exception-handlers-enabled: true
     async:
+      enabled: true
       timeout: 500
   graphiql:
     enabled: true
