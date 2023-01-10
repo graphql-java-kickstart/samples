@@ -2,7 +2,7 @@ def jettyVersion = '9.4.50.v20221201'
 
 dependencies {
     implementation "com.graphql-java-kickstart:graphql-java-servlet:$LIB_GRAPHQL_SERVLET_VER"
-    implementation "io.projectreactor:reactor-core:3.5.1"
+    implementation "io.projectreactor:reactor-core:3.5.2"
     implementation 'ch.qos.logback:logback-classic:1.4.5'
     implementation 'org.slf4j:slf4j-simple:2.0.6'
     implementation "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
