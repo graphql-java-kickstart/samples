@@ -6,6 +6,8 @@ server:
 graphql:
   servlet:
     exception-handlers-enabled: true
-    async-timeout: 500
+    async:
+      timeout: 500
+      enabled: true
   graphiql:
     enabled: true

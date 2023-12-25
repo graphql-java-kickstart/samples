@@ -1,6 +1,6 @@
 # Async timeout
 
-The `graphql.servlet.async-timeout` property enables you to define a request level timeout to be enforced. This can help
+The `graphql.servlet.async.timeout` property enables you to define a request level timeout to be enforced. This can help
 in preventing DDoS attacks. This is only available when running the application in `servlet` mode. The value is the
 timeout in milliseconds that should be enforced. If the GraphQL request has not finished within that timeout a GraphQL
 error will be returned:
@@ -30,11 +30,8 @@ In this example the timeout has been configured at 500 milliseconds in
 [application.yml](src/main/resources/application.yml).
 
 ```yaml
-graphql.servlet.async-timeout: 500
+graphql.servlet.async.timeout: 500
 ```
-
-Note that the property `graphql.servlet.async-mode-enabled` has not been set to `true` here, because that's it's enabled
-by default already.
 
 ## GraphQL execution cancellation
 
@@ -59,11 +56,11 @@ query {
 
 Either one will stop processing after 500ms because of the configured timeout.
 
-The main difference between the two methods in the `Query` class however is the ability to also cancel the execution of
+~~The main difference between the two methods in the `Query` class however is the ability to also cancel the execution of
 the GraphQL request. Ideally the GraphQL execution is cancelled as well, because otherwise that request is still taking
 up resources and Thread(s) even though the HTTP request has stopped. An attacker could repeatedly call that particular
 GraphQL query which now returns fast, and that would spawn a new Thread with long running execution within the
-application itself. That could ultimately lead to an application that crashes because it runs out of memory for example.
+application itself. That could ultimately lead to an application that crashes because it runs out of memory for example.~~
 
 To make the GraphQL requests themselves cancellable you only have to remember to always return a `CompletableFuture`
 instead of the value directly. The `Query.getHello()` method is a simple example of a cancellable GraphQL request.
