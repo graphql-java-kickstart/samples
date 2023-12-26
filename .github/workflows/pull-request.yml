@@ -27,9 +27,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
-      - name: Make gradlew executable (non-Windows only)
-        if: matrix.os != 'windows-latest'
-        run: chmod +x ./gradlew
       - name: Gradle Check (non-Windows)
         if: matrix.os != 'windows-latest'
         run: ./gradlew --info check
