@@ -1,9 +1,16 @@
 scalar Upload
 
-type Query {
+type UploadedFile {
+    filename: String
+    type: String
+    content: String
+}
 
+# The hello query declaration is necessary since the graphql-java-tools requires at least one query
+type Query {
+    hello: String
 }
 
 type Mutation {
-    upload(file: Upload): Boolean
+    upload(file: Upload): UploadedFile
 }
