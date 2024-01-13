@@ -20,10 +20,13 @@ class Query implements GraphQLQueryResolver {
     return CompletableFuture.supplyAsync(
         () -> {
           try {
+            log.info("Start Hello query execution");
             Thread.sleep(3000);
+            log.info("Execute Hello query after the sleep");
           } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
           }
+          log.info("End Hello query execution");
           return "world";
         });
   }
@@ -36,10 +39,13 @@ class Query implements GraphQLQueryResolver {
    */
   String getWorld() {
     try {
+      log.info("Start World query execution");
       Thread.sleep(3000);
+      log.info("Execute World query after the sleep");
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
+    log.info("End World query execution");
     return "hello";
   }
 }
